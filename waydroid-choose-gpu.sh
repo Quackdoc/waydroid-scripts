@@ -27,8 +27,8 @@ echo /dev/dri/$card
 echo /dev/dri/$rendernode
 
 #lxc.mount.entry = /dev/dri dev/dri none bind,create=dir,optional 0 0
-sed -i '/dri/d' ./config_nodes
-echo "lxc.mount.entry = /dev/dri/$card dev/dri/card0 none bind,create=file,optional 0 0" >> config_nodes
-echo "lxc.mount.entry = /dev/dri/$rendernode dev/dri/renderD128 none bind,create=file,optional 0 0" >> config_nodes
+sed -i '/dri/d' /var/lib/waydroid/lxc/waydroid/config_nodes
+echo "lxc.mount.entry = /dev/dri/$card dev/dri/card0 none bind,create=file,optional 0 0" >> c/var/lib/waydroid/lxc/waydroid/onfig_nodes
+echo "lxc.mount.entry = /dev/dri/$rendernode dev/dri/renderD128 none bind,create=file,optional 0 0" >> /var/lib/waydroid/lxc/waydroid/config_nodes
 
 
