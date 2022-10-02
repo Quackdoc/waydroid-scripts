@@ -4,7 +4,7 @@ echo "First select a gpu to pass to waydroid"
 echo "Listing GPUs now"
 echo ""
 
-lspci | grep ' VGA '
+lspci | grep ' VGA\|Display '
 
 echo ""
 echo "Put pci ID of your GPU in"
