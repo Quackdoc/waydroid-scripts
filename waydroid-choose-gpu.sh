@@ -1,20 +1,25 @@
 #!/bin/bash
 
-echo "First select a gpu to pass to waydroid"
-echo "Listing GPUs now"
-echo ""
+lspci="$(lspci -nn | grep '\[03')" # https://pci-ids.ucw.cz/read/PD/03
 
-lspci | grep ' VGA\|Display '
+echo -e "Please enter the GPU number you want to pass to WayDroid:\n"
+gpus=()
+i=0
+while IFS= read lspci; do
+	gpus+=("$lspci")
+	echo "  $((++i)). $lspci"
+done < <(echo "$lspci")
+echo ""
+while [ -z "$gpuchoice" ]; do
+	read -erp ">> Number of GPU to pass to WayDroid (1-${#gpus[@]}): " ans
+	if [[ "$ans" =~ [0-9]+ && $ans -ge 1 && $ans -le ${#gpus[@]} ]]; then
+		gpuchoice="${gpus[$((ans-1))]%% *}" # e.g. "26:00.0"
+	fi
+done
 
 echo ""
-echo "Put pci ID of your GPU in"
-read gpuchoice
-
+echo "Confirm that these belong to your GPU:"
 echo ""
-echo "confirm that these belong to your GPU."
-echo ""
-
-#lspci | grep ' VGA ' | cut -d" " -f 1 | grep -i $gpuchoice
 
 ls -l /dev/dri/by-path/ | grep -i $gpuchoice
 
