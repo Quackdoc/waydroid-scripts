@@ -34,4 +34,5 @@ echo /dev/dri/$rendernode
 cp /var/lib/waydroid/lxc/waydroid/config_nodes /var/lib/waydroid/lxc/waydroid/config_nodes.bak
 #lxc.mount.entry = /dev/dri dev/dri none bind,create=dir,optional 0 0
 sed -i '/dri/d' /var/lib/waydroid/lxc/waydroid/config_nodes
+echo "lxc.mount.entry = /dev/dri/$card dev/dri/card0 none bind,create=file,optional 0 0" >> /var/lib/waydroid/lxc/waydroid/config_nodes
 echo "lxc.mount.entry = /dev/dri/$rendernode dev/dri/renderD128 none bind,create=file,optional 0 0" >> /var/lib/waydroid/lxc/waydroid/config_nodes
