@@ -27,7 +27,7 @@ ls -l /dev/dri/by-path/ | grep -i $gpuchoice
 echo ""
 
 card=$(ls -l /dev/dri/by-path/ | grep -i $gpuchoice | grep -o "card[0-9]")
-rendernode=$(ls -l /dev/dri/by-path/ | grep -i $gpuchoice | grep -o "renderD[1-9][1-9][1-9]")
+rendernode=$(ls -l /dev/dri/by-path/ | grep -i $gpuchoice | grep -o "renderD[0-9][0-9][0-9]")
 
 echo /dev/dri/$card
 echo /dev/dri/$rendernode
